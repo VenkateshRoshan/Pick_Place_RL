@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<robot name="three_arm_robot">
+
+  <!-- Base Link -->
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <box size="0.2 0.2 0.05"/>
+      </geometry>
+      <material name="gray">
+        <color rgba="0.5 0.5 0.5 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- Arm 1 -->
+  <link name="arm1_link">
+    <visual>
+      <geometry>
+        <cylinder radius="0.05" length="0.5"/>
+      </geometry>
+      <material name="blue">
+        <color rgba="0.0 0.0 1.0 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- Arm 2 -->
+  <link name="arm2_link">
+    <visual>
+      <geometry>
+        <cylinder radius="0.05" length="0.5"/>
+      </geometry>
+      <material name="green">
+        <color rgba="0.0 1.0 0.0 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- Arm 3 -->
+  <link name="arm3_link">
+    <visual>
+      <geometry>
+        <cylinder radius="0.05" length="0.5"/>
+      </geometry>
+      <material name="red">
+        <color rgba="1.0 0.0 0.0 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- Joint 1: Base to Arm 1 -->
+  <joint name="joint1" type="revolute">
+    <parent link="base_link"/>
+    <child link="arm1_link"/>
+    <origin xyz="0 0 0.025" rpy="0 0 0"/> <!-- Place at the top of the base link -->
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.14" upper="3.14" effort="10" velocity="1.0"/>
+  </joint>
+
+  <!-- Joint 2: Arm 1 to Arm 2 -->
+  <joint name="joint2" type="revolute">
+    <parent link="arm1_link"/>
+    <child link="arm2_link"/>
+    <origin xyz="0 0 0.5" rpy="0 0 0"/> <!-- Place at the end of Arm 1 -->
+    <axis xyz="0 1 0"/>
+    <limit lower="-3.14" upper="3.14" effort="10" velocity="1.0"/>
+  </joint>
+
+  <!-- Joint 3: Arm 2 to Arm 3 -->
+  <joint name="joint3" type="revolute">
+    <parent link="arm2_link"/>
+    <child link="arm3_link"/>
+    <origin xyz="0 0 0.5" rpy="0 0 0"/> <!-- Place at the end of Arm 2 -->
+    <axis xyz="0 1 0"/>
+    <limit lower="-3.14" upper="3.14" effort="10" velocity="1.0"/>
+  </joint>
+
+</robot>
